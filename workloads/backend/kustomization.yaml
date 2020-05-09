@@ -1,7 +1,4 @@
 resources:
   - service.yaml
   - deployment.yaml
-  - redis.yml
-secretGenerator:
-- name: redispw
 
