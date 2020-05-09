@@ -1,5 +1,4 @@
-namespace: team1
+namespace: idp-dev
 bases:
-  - ./workloads/frontend/
-  - ./workloads/backend/
+  - ./workloads/idp/
   - ./workloads/redis/

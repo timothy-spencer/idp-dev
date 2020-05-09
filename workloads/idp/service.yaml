@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: idp
 spec:
   type: ClusterIP
   selector:
-    app: frontend
+    app: idp
   ports:
     - name: http
       port: 9898

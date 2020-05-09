@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: idp
   labels:
-    app: frontend
+    app: idp
 spec:
   minReadySeconds: 5
   revisionHistoryLimit: 5
@@ -14,13 +14,13 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: frontend
+      app: idp
   template:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
       labels:
-        app: frontend
+        app: idp
     spec:
       containers:
         - name: podinfod
