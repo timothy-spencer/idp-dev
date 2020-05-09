@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: redis
-  namespace: default
+  namespace: team1
   labels:
     app: redis
     chart: redis-10.6.13
@@ -32,7 +32,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: redis-health
-  namespace: default
+  namespace: team1
   labels:
     app: redis
     chart: redis-10.6.13
@@ -117,7 +117,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-headless
-  namespace: default
+  namespace: team1
   labels:
     app: redis
     chart: redis-10.6.13
@@ -139,7 +139,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-master
-  namespace: default
+  namespace: team1
   labels:
     app: redis
     chart: redis-10.6.13
@@ -161,7 +161,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-slave
-  namespace: default
+  namespace: team1
   labels:
     app: redis
     chart: redis-10.6.13
@@ -183,7 +183,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: redis-master
-  namespace: default
+  namespace: team1
   labels:
     app: redis
     chart: redis-10.6.13
@@ -204,8 +204,8 @@ spec:
         release: redis
         role: master
       annotations:
-        checksum/health: 11fe66db2b1b55ed7735e3b3bac028ae66d47dd31765b7335f84ca830a41fd51
-        checksum/configmap: 46b83ae868dbc4c0c55dfd07271e1361990eb71910f79f0a28794003a4c3b0e8
+        checksum/health: 1f9ea423fb207a967ac9bd37ab688bceb0ae2cb114373924a213496067909308
+        checksum/configmap: ad901cae367c4174e40b4e14d72bff24d071e20475c3281b0da157b8c94e99b4
         checksum/secret: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     spec:
       
@@ -319,7 +319,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: redis-slave
-  namespace: default
+  namespace: team1
   labels:
     app: redis
     chart: redis-10.6.13
@@ -341,8 +341,8 @@ spec:
         chart: redis-10.6.13
         role: slave
       annotations:
-        checksum/health: 11fe66db2b1b55ed7735e3b3bac028ae66d47dd31765b7335f84ca830a41fd51
-        checksum/configmap: 46b83ae868dbc4c0c55dfd07271e1361990eb71910f79f0a28794003a4c3b0e8
+        checksum/health: 1f9ea423fb207a967ac9bd37ab688bceb0ae2cb114373924a213496067909308
+        checksum/configmap: ad901cae367c4174e40b4e14d72bff24d071e20475c3281b0da157b8c94e99b4
         checksum/secret: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     spec:
       
@@ -384,7 +384,7 @@ spec:
             - name: REDIS_REPLICATION_MODE
               value: slave
             - name: REDIS_MASTER_HOST
-              value: redis-master-0.redis-headless.default.svc.cluster.local
+              value: redis-master-0.redis-headless.team1.svc.cluster.local
             - name: REDIS_PORT
               value: "6379"
             - name: REDIS_MASTER_PORT_NUMBER
