@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: redis
-  namespace: team1
+  namespace: idp-dev
   labels:
     app: redis
     chart: redis-10.6.13
@@ -32,7 +32,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: redis-health
-  namespace: team1
+  namespace: idp-dev
   labels:
     app: redis
     chart: redis-10.6.13
@@ -117,7 +117,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-headless
-  namespace: team1
+  namespace: idp-dev
   labels:
     app: redis
     chart: redis-10.6.13
@@ -139,7 +139,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-master
-  namespace: team1
+  namespace: idp-dev
   labels:
     app: redis
     chart: redis-10.6.13
@@ -161,7 +161,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-slave
-  namespace: team1
+  namespace: idp-dev
   labels:
     app: redis
     chart: redis-10.6.13
@@ -183,7 +183,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: redis-master
-  namespace: team1
+  namespace: idp-dev
   labels:
     app: redis
     chart: redis-10.6.13
@@ -319,7 +319,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: redis-slave
-  namespace: team1
+  namespace: idp-dev
   labels:
     app: redis
     chart: redis-10.6.13
@@ -384,7 +384,7 @@ spec:
             - name: REDIS_REPLICATION_MODE
               value: slave
             - name: REDIS_MASTER_HOST
-              value: redis-master-0.redis-headless.team1.svc.cluster.local
+              value: redis-master-0.redis-headless.idp-dev.svc.cluster.local
             - name: REDIS_PORT
               value: "6379"
             - name: REDIS_MASTER_PORT_NUMBER
