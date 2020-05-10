@@ -17,6 +17,9 @@ spec:
       containers:
       - name: idp
         image: timspencer/idp:1.0.2
+        env:
+        - name: RAILS_ENV
+          value: development
         ports:
         - containerPort: 3000
         volumeMounts:
