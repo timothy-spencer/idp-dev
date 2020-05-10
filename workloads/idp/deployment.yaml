@@ -20,10 +20,10 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: application.yml
+        - name: appconfig
           mountPath: "/upaya/app/config/application.yml"
           readOnly: true
       volumes:
-      - name: application.yml
+      - name: appconfig
         secret:
           secretName: application.yml
