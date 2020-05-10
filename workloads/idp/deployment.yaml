@@ -17,6 +17,11 @@ spec:
       containers:
       - name: idp
         image: timspencer/idp:1.0.0
+        env:
+          - name: GEM_HOME
+            value: /upaya/vendor/bundle/ruby/2.6.0
+          - name: PATH
+            value: /upaya/vendor/bundle/ruby/2.6.0/bin
         ports:
         - containerPort: 80
         volumeMounts:

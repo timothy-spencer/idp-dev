@@ -4,4 +4,4 @@ resources:
 # secretGenerator:
 # - name: application.yml
 #   files:
-#     - secrets/application.yml
+#     - ../../../identity-idp/config/application.yml.default
