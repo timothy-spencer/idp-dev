@@ -14,13 +14,6 @@ spec:
       labels:
         app: idp
     spec:
-      resources:
-        limits:
-          cpu: 2000m
-          memory: 512Mi
-        requests:
-          cpu: 100m
-          memory: 64Mi
       containers:
       - name: idp
         image: logindotgov/idp:da9b9493f
