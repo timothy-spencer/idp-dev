@@ -16,6 +16,14 @@ spec:
     spec:
       containers:
       - name: idp
-        image: logindotgov/idp:da9b9493f
+        image: timspencer/idp:1.0.0
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: application.yml
+          mountPath: "/upaya/app/config/application.yml"
+          readOnly: true
+      volumes:
+      - name: application.yml
+        secret:
+          secretName: application.yml
