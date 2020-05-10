@@ -17,13 +17,22 @@ spec:
       containers:
       - name: idp
         image: timspencer/idp:1.0.2
+        env:
+        - name: RAILS_ENV
+          value: idp-dev
         ports:
         - containerPort: 3000
         volumeMounts:
         - name: appconfig
           mountPath: "/upaya/app/config/application.yml"
           readOnly: true
+        - name: dbconfig
+          mountPath: "/upaya/app/config/database.yml"
+          readOnly: true
       volumes:
       - name: appconfig
         secret:
           secretName: application.yml
+      - name: dbconfig
+        secret:
+          secretName: database.yml
