@@ -204,8 +204,8 @@ spec:
         release: redis
         role: master
       annotations:
-        checksum/health: 1f9ea423fb207a967ac9bd37ab688bceb0ae2cb114373924a213496067909308
-        checksum/configmap: ad901cae367c4174e40b4e14d72bff24d071e20475c3281b0da157b8c94e99b4
+        checksum/health: 485e80233e74d362701687257e7c6a03076f89338696e611d05cf163ae6d0355
+        checksum/configmap: 10b36793bd7ceeefc469d1a0a9f66414bcc4112e9ec7aa9ec0e4a6698ac7a388
         checksum/secret: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     spec:
       
@@ -341,8 +341,8 @@ spec:
         chart: redis-10.6.13
         role: slave
       annotations:
-        checksum/health: 1f9ea423fb207a967ac9bd37ab688bceb0ae2cb114373924a213496067909308
-        checksum/configmap: ad901cae367c4174e40b4e14d72bff24d071e20475c3281b0da157b8c94e99b4
+        checksum/health: 485e80233e74d362701687257e7c6a03076f89338696e611d05cf163ae6d0355
+        checksum/configmap: 10b36793bd7ceeefc469d1a0a9f66414bcc4112e9ec7aa9ec0e4a6698ac7a388
         checksum/secret: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     spec:
       
