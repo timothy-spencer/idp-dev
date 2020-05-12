@@ -6,7 +6,7 @@
 #     flux.weave.works/automated: "true"
 #     flux.weave.works/tag.idp: semver:~1.0
 #   name: idp
-#   namespace: idp-dev
+#   namespace: idp
 # spec:
 #   template:
 #     spec:

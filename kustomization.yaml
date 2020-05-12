@@ -1,4 +1,4 @@
-namespace: idp-dev
+namespace: idp
 bases:
   - ./workloads/redis/
   - ./workloads/idp/

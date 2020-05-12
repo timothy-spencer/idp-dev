@@ -2,7 +2,7 @@ apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
   name: idp
-  namespace: idp-dev
+  namespace: idp
 spec:
   # service mesh provider can be: kubernetes, istio, appmesh, nginx, gloo
   provider: kubernetes
@@ -48,15 +48,15 @@ spec:
     webhooks:
       - name: smoke-test
         type: pre-rollout
-        url: http://flagger-loadtester.idp-dev/
+        url: http://flagger-loadtester.idp/
         timeout: 15s
         metadata:
           type: bash
-          cmd: "curl -sd 'anon' http://idp-canary.idp-dev:9898/token | grep token"
+          cmd: "curl -sd 'anon' http://idp-canary.idp:9898/token | grep token"
       - name: load-test
-        url: http://flagger-loadtester.idp-dev/
+        url: http://flagger-loadtester.idp/
         timeout: 5s
         metadata:
           type: cmd
-          cmd: "hey -z 1m -q 10 -c 2 http://idp-canary.idp-dev:9898/"
+          cmd: "hey -z 1m -q 10 -c 2 http://idp-canary.idp:9898/"
 
