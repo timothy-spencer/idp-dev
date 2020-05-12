@@ -1,5 +1,5 @@
 resources:
   - github.com/weaveworks/flagger//kustomize/podinfo
-  - github.com/weaveworks/flagger//kustomize/tester
+    #  - github.com/weaveworks/flagger//kustomize/tester
   - canary.yml
 
