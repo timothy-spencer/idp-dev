@@ -1,4 +1,5 @@
 namespace: idp-dev
 bases:
-  - ./workloads/idp/
   - ./workloads/redis/
+  - ./workloads/idp/
+  - ./workloads/idp-bluegreen/
