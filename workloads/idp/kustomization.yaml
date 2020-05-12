@@ -1,7 +1,7 @@
 resources:
   - service.yaml
   - deployment.yaml
-  - canary.yaml
+  - canary.yml
   - github.com/weaveworks/flagger//kustomize/tester
 # secretGenerator:
 # - name: application.yml
