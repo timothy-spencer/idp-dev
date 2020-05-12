@@ -14,3 +14,4 @@ GitHub [workflow](https://github.com/fluxcd/multi-tenancy-team1/blob/master/.git
 * deny containers with latest image tag
 * deny deployments and services without app label selector
 * warn if deployments have no prometheus pod annotations
+
