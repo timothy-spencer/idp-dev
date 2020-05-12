@@ -4,14 +4,14 @@ kind: Deployment
 metadata:
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/tag.podinfod: semver:~1.7
+    flux.weave.works/tag.idp: semver:~1.0
   name: idp
   namespace: idp-dev
 spec:
   template:
     spec:
       $setElementOrder/containers:
-      - name: podinfod
+      - name: idp
       containers:
-      - image: quay.io/stefanprodan/podinfo:1.7.4
-        name: podinfod
+      - image: timspencer/idp:1.0.2
+        name: idp
