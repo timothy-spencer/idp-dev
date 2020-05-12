@@ -48,7 +48,7 @@ spec:
     webhooks:
       - name: smoke-test
         type: pre-rollout
-        url: http://flagger-loadtester.test/
+        url: http://flagger-loadtester.idp-bluegreen/
         timeout: 15s
         metadata:
           type: bash
