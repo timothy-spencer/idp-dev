@@ -12,6 +12,9 @@ if [ ! -f "$1" ] ; then
   exit 1
 fi
 
+rm -f /tmp/rds-combined-ca-bundle.pem.$$
+curl https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem > /tmp/rds-combined-ca-bundle.pem.$$
 kubectl delete secret database.yml
 kubectl create secret generic database.yml --from-file="$1"
-
+kubectl create secret generic rds-combined-ca-bundle.pem --from-file=/tmp/rds-combined-ca-bundle.pem.$$
+rm -f /tmp/rds-combined-ca-bundle.pem.$$

@@ -29,6 +29,9 @@ spec:
         - name: dbconfig
           mountPath: "/upaya/app/config/database.yml"
           readOnly: true
+        - name: rdscerts
+          mountPath: "/upaya/rds-combined-ca-bundle.pem"
+          readOnly: true
       volumes:
       - name: appconfig
         secret:
@@ -36,3 +39,6 @@ spec:
       - name: dbconfig
         secret:
           secretName: database.yml
+      - name: rdscerts
+        secret:
+          secretName: rds-combined-ca-bundle.pem
