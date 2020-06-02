@@ -21,7 +21,7 @@ spec:
         - name: RAILS_ENV
           value: production
         - name: NEW_RELIC_AGENT_ENABLED
-          value: 'false'
+          value: false
         ports:
         - containerPort: 3000
         volumeMounts:
