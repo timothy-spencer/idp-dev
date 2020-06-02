@@ -16,29 +16,49 @@ spec:
     spec:
       containers:
       - name: idp
-        image: timspencer/idp:1.0.2
+        image: timspencer/idp:1.0.3
         env:
         - name: RAILS_ENV
           value: production
+        - name: NEW_RELIC_AGENT_ENABLED
+          value: 'false'
         ports:
         - containerPort: 3000
         volumeMounts:
         - name: appconfig
-          mountPath: "/upaya/app/config/application.yml"
+          mountPath: "/upaya/config/application.yml"
           readOnly: true
-        - name: dbconfig
-          mountPath: "/upaya/app/config/database.yml"
+        - name: agencies
+          mountPath: "/upaya/config/agencies.yml"
           readOnly: true
-        - name: rdscerts
-          mountPath: "/upaya/rds-combined-ca-bundle.pem"
+        - name: certs
+          mountPath: "/upaya/certs"
+          readOnly: true
+        - name: keys
+          mountPath: "/upaya/keys"
+          readOnly: true
+        - name: pwnedpasswords
+          mountPath: "/upaya/pwned_passwords/pwned_passwords.txt"
+          readOnly: true
+        - name: serviceproviders
+          mountPath: "/upaya/config/service_providers.yml"
           readOnly: true
       volumes:
       - name: appconfig
         secret:
           secretName: application.yml
-      - name: dbconfig
+      - name: agencies
         secret:
-          secretName: database.yml
-      - name: rdscerts
+          secretName: agencies.yml
+      - name: certs
         secret:
-          secretName: rds-combined-ca-bundle.pem
+          secretName: certs
+      - name: keys
+        secret:
+          secretName: keys
+      - name: pwnedpasswords
+        secret:
+          secretName: pwnedpasswords.txt
+      - name: serviceproviders
+        secret:
+          secretName: serviceproviders.yml
