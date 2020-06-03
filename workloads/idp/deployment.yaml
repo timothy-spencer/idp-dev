@@ -17,12 +17,16 @@ spec:
       containers:
       - name: idp
         image: timspencer/idp:1.0.6
-        # command: ['sh', '-c', 'echo started ; sleep 3601']
         env:
         - name: RAILS_ENV
           value: "production"
         - name: NEW_RELIC_AGENT_ENABLED
           value: "false"
+        - name: database_host
+          valueFrom:
+            configMapKeyRef:
+              name: idp-postgres
+              key: hostname
         ports:
         - containerPort: 3000
         volumeMounts:
