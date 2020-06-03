@@ -10,8 +10,8 @@
 #
 
 if [ ! -f "$1" ] && [ ! -f "$2" ] && [ ! -f "$3" ] && [ ! -f "$4" ] && [ ! -f "$5" ] && [ ! -f "$6" ] ; then
-  echo "usage:    $0 <application.yml> <certs> <keys> <pwned_passwords.txt> <service_providers.yml>"
-  echo "example:  $0 ../../../identity-idp/config/application.yml.default certs keys pwned_passwords.txt service_providers.yml"
+  echo "usage:    $0 <application.yml> <certs> <keys> <pwned_passwords.txt> <service_providers.yml> <agencies.yml>"
+  echo "example:  $0 ../../../identity-idp/config/application.yml.default certs keys pwned_passwords.txt service_providers.yml agencies.foo.yml"
   exit 1
 fi
 
@@ -19,11 +19,11 @@ CONFIGDIR="/tmp/appconfig.$$/appconfig"
 mkdir -p "$CONFIGDIR"
 
 cp "$1" "$CONFIGDIR"/application.yml
-cp "$1" "$CONFIGDIR"/agencies.yml
-cp "$1" "$CONFIGDIR"/certs
-cp "$1" "$CONFIGDIR"/keys
-cp "$1" "$CONFIGDIR"/pwned_passwords.txt
-cp "$1" "$CONFIGDIR"/service_providers.yml
+cp -rp "$2" "$CONFIGDIR"/certs
+cp -rp "$3" "$CONFIGDIR"/keys
+cp "$4" "$CONFIGDIR"/pwned_passwords.txt
+cp "$5" "$CONFIGDIR"/service_providers.yml
+cp "$6" "$CONFIGDIR"/agencies.yml
 
 kubectl create secret generic appconfig --from-file="$CONFIGDIR" -n idp --dry-run=client -o yaml | kubectl apply -f -
 
