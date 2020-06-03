@@ -42,13 +42,13 @@ spec:
     webhooks:
       - name: smoke-test
         type: pre-rollout
-        url: http://flagger-loadtester.test/
+        url: http://flagger-loadtester.idp/
         timeout: 15s
         metadata:
           type: bash
           cmd: "curl -s http://idp-canary.idp:3000/api/health/database | grep healthy.*true"
       - name: load-test
-        url: http://flagger-loadtester.test/
+        url: http://flagger-loadtester.idp/
         timeout: 5s
         metadata:
           type: cmd
