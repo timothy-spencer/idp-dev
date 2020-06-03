@@ -31,12 +31,12 @@ spec:
     iterations: 5
     # Prometheus checks based on 
     # http_request_duration_seconds histogram
-    metrics:
-      - name: request-duration
-        # maximum req duration P99
-        # milliseconds
+    metrics: 
+      - name: scrape_duration_seconds
+        # XXX  need to get a real metrics endpoint going so that this will really work.
+        #      This is just a demo, basically.  It will always pass.
         thresholdRange:
-          max: 500
+          min: 0
         interval: 30s
     # acceptance smoke-test
     webhooks:
