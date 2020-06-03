@@ -18,7 +18,7 @@ spec:
   autoscalerRef:
     apiVersion: autoscaling/v2beta1
     kind: HorizontalPodAutoscaler
-    name: podinfo
+    name: idp
   service:
     port: 3000
     portDiscovery: true
