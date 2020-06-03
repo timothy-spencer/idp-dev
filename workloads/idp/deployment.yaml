@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: idp
-        image: timspencer/idp:1.0.9
+        image: timspencer/idp:1.0.10
         env:
         - name: RAILS_ENV
           value: "production"
