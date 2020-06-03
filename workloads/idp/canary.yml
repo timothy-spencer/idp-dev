@@ -23,22 +23,7 @@ spec:
     port: 3000
     portDiscovery: true
   analysis:
-    # schedule interval (default 60s)
-    interval: 30s
-    # max number of failed checks before rollback
-    threshold: 2
-    # number of checks to run before rollback
-    iterations: 10
-    # Prometheus checks based on 
-    # http_request_duration_seconds histogram
-    metrics:
-      - name: request-duration
-        # maximum req duration P99
-        # milliseconds
-        thresholdRange:
-          max: 500
-        interval: 30s
-    # acceptance/load testing hooks
+    # acceptance smoke-test
     webhooks:
       - name: smoke-test
         type: pre-rollout
