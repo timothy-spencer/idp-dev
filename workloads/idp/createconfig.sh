@@ -19,13 +19,13 @@ CONFIGDIR="/tmp/appconfig.$$/appconfig"
 mkdir -p "$CONFIGDIR"
 
 cp "$1" "$CONFIGDIR"/application.yml
-cp -rp "$2" "$CONFIGDIR"/certs
-cp -rp "$3" "$CONFIGDIR"/keys
 cp "$4" "$CONFIGDIR"/pwned_passwords.txt
 cp "$5" "$CONFIGDIR"/service_providers.yml
 cp "$6" "$CONFIGDIR"/agencies.yml
 
 kubectl create secret generic appconfig --from-file="$CONFIGDIR" -n idp --dry-run=client -o yaml | kubectl apply -f -
+kubectl create secret generic certs --from-file="$2" -n idp --dry-run=client -o yaml | kubectl apply -f -
+kubectl create secret generic keys --from-file="$3" -n idp --dry-run=client -o yaml | kubectl apply -f -
 
 rm -rf "$CONFIGDIR"
 rmdir /tmp/appconfig.$$

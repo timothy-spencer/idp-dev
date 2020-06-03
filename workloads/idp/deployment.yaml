@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: idp
-        image: timspencer/idp:1.0.5
-        command: ['sh', '-c', 'echo started ; sleep 3601']
+        image: timspencer/idp:1.0.6
+        # command: ['sh', '-c', 'echo started ; sleep 3601']
         env:
         - name: RAILS_ENV
           value: "production"
@@ -27,9 +27,21 @@ spec:
         - containerPort: 3000
         volumeMounts:
         - name: appconfig
-          mountPath: "/secrets"
+          mountPath: "/appconfig"
+          readOnly: true
+        - name: certs
+          mountPath: "/upaya/certs"
+          readOnly: true
+        - name: keys
+          mountPath: "/upaya/keys"
           readOnly: true
       volumes:
       - name: appconfig
         secret:
           secretName: appconfig
+      - name: certs
+        secret:
+          secretName: certs
+      - name: keys
+        secret:
+          secretName: keys
