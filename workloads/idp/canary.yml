@@ -47,7 +47,7 @@ spec:
         timeout: 15s
         metadata:
           type: bash
-          cmd: "curl -sd 'anon' http://idp-canary.idp:3000/token | grep token"
+          cmd: "curl -s http://idp-canary.idp:3000/ | grep html"
       - name: load-test
         url: http://flagger-loadtester.idp/
         timeout: 5s
