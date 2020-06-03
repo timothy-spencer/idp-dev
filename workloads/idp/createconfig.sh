@@ -15,20 +15,17 @@ if [ ! -f "$1" ] && [ ! -f "$2" ] && [ ! -f "$3" ] && [ ! -f "$4" ] && [ ! -f "$
   exit 1
 fi
 
-kubectl delete secret application.yml -n idp
-kubectl create secret generic application.yml --from-file="$1" -n idp
+CONFIGDIR="/tmp/appconfig.$$/appconfig"
+mkdir -p "$CONFIGDIR"
 
-kubectl delete secret agencies.yml -n idp
-kubectl create secret generic agencies.yml --from-file="$2" -n idp
+cp "$1" "$CONFIGDIR"/application.yml
+cp "$1" "$CONFIGDIR"/agencies.yml
+cp "$1" "$CONFIGDIR"/certs
+cp "$1" "$CONFIGDIR"/keys
+cp "$1" "$CONFIGDIR"/pwned_passwords.txt
+cp "$1" "$CONFIGDIR"/service_providers.yml
 
-kubectl delete secret certs -n idp
-kubectl create secret generic certs --from-file="$3" -n idp
+kubectl create secret generic appconfig --from-file="$CONFIGDIR" -n idp --dry-run=client -o yaml | kubectl apply -f -
 
-kubectl delete secret keys -n idp
-kubectl create secret generic keys --from-file="$4" -n idp
-
-kubectl delete secret pwnedpasswords.txt -n idp
-kubectl create secret generic pwnedpasswords.txt --from-file="$5" -n idp
-
-kubectl delete secret serviceproviders.yml -n idp
-kubectl create secret generic serviceproviders.yml --from-file="$6" -n idp
+rm -rf "$CONFIGDIR"
+rmdir /tmp/appconfig.$$

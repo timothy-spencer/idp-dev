@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: idp
-        image: timspencer/idp:1.0.4
+        image: timspencer/idp:1.0.5
         env:
         - name: RAILS_ENV
           value: "production"
@@ -26,39 +26,9 @@ spec:
         - containerPort: 3000
         volumeMounts:
         - name: appconfig
-          mountPath: "/upaya/config/application.yml"
-          readOnly: true
-        - name: agencies
-          mountPath: "/upaya/config/agencies.yml"
-          readOnly: true
-        - name: certs
-          mountPath: "/upaya/certs"
-          readOnly: true
-        - name: keys
-          mountPath: "/upaya/keys"
-          readOnly: true
-        - name: pwnedpasswords
-          mountPath: "/upaya/pwned_passwords/pwned_passwords.txt"
-          readOnly: true
-        - name: serviceproviders
-          mountPath: "/upaya/config/service_providers.yml"
+          mountPath: "/secrets"
           readOnly: true
       volumes:
       - name: appconfig
         secret:
-          secretName: application.yml
-      - name: agencies
-        secret:
-          secretName: agencies.yml
-      - name: certs
-        secret:
-          secretName: certs
-      - name: keys
-        secret:
-          secretName: keys
-      - name: pwnedpasswords
-        secret:
-          secretName: pwnedpasswords.txt
-      - name: serviceproviders
-        secret:
-          secretName: serviceproviders.yml
+          secretName: appconfig
