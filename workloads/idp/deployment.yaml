@@ -13,10 +13,14 @@ spec:
     metadata:
       labels:
         app: idp
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9797"
+        prometheus.io/path: "/api/health"
     spec:
       containers:
       - name: idp
-        image: timspencer/idp:1.0.11
+        image: timspencer/idp:1.0.10
         env:
         - name: RAILS_ENV
           value: "production"
