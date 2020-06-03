@@ -17,6 +17,7 @@ spec:
       containers:
       - name: idp
         image: timspencer/idp:1.0.5
+        command: ['sh', '-c', 'echo started ; sleep 3600']
         env:
         - name: RAILS_ENV
           value: "production"
