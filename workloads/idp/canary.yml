@@ -14,11 +14,6 @@ spec:
   # the maximum time in seconds for the canary deployment
   # to make progress before rollback (default 600s)
   progressDeadlineSeconds: 60
-  # HPA reference (optional)
-  autoscalerRef:
-    apiVersion: autoscaling/v2beta1
-    kind: HorizontalPodAutoscaler
-    name: idp
   service:
     port: 9898
     portDiscovery: true
