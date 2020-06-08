@@ -2,4 +2,5 @@ namespace: idp
 bases:
   - ./workloads/redis/
   - ./workloads/idp/
+  - ./workloads/cats/
   - ./workloads/idp-bluegreen/
