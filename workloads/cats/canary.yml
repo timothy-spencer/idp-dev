@@ -1,0 +1,55 @@
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: cats
+  namespace: idp
+spec:
+  # service mesh provider can be: kubernetes, istio, appmesh, nginx, gloo
+  provider: kubernetes
+  # deployment reference
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cats
+  # the maximum time in seconds for the canary deployment
+  # to make progress before rollback (default 600s)
+  progressDeadlineSeconds: 60
+  # HPA reference (optional)
+  autoscalerRef:
+    apiVersion: autoscaling/v2beta1
+    kind: HorizontalPodAutoscaler
+    name: cats
+  service:
+    port: 80
+    portDiscovery: true
+  analysis:
+    # schedule interval (default 60s)
+    interval: 10s
+    # max number of failed checks before rollback
+    threshold: 2
+    # number of checks to run before rollback
+    iterations: 5
+    # Prometheus checks based on 
+    # http_request_duration_seconds histogram
+    metrics: 
+      - name: scrape_duration_seconds
+        # XXX  need to get a real metrics endpoint going so that this will really work.
+        #      This is just a demo, basically.  It will always pass.
+        thresholdRange:
+          min: 0
+        interval: 30s
+    # acceptance smoke-test
+    webhooks:
+      - name: smoke-test
+        type: pre-rollout
+        url: http://flagger-loadtester.idp/
+        timeout: 15s
+        metadata:
+          type: bash
+          cmd: "curl -s http://cats-canary.idp:80/ | grep 'Fake IDP'"
+      - name: load-test
+        url: http://flagger-loadtester.idp/
+        timeout: 5s
+        metadata:
+          type: cmd
+          cmd: "hey -z 1m -q 10 -c 2 http://cats-canary.idp:80/"

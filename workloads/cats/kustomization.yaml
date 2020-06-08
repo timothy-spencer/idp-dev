@@ -1,0 +1,6 @@
+resources:
+  - service.yaml
+  - deployment.yaml
+  - canary.yml
+  - autoscaler.yml
+  - github.com/weaveworks/flagger//kustomize/tester
