@@ -1,26 +1,16 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: idp
-  labels:
-    app: idp
+  name: idp-migrate
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: idp
   template:
-    metadata:
-      labels:
-        app: idp
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "3000"
-        prometheus.io/path: "/api/health/"
     spec:
+      restartPolicy: Never
       containers:
-      - name: idp
-        image: gsatspencer/identity-idp:1.0.2
+      - name: idp-migrate
+        image: gsatspencer/identity-idp:1.0.1
+        command: ['bundle']
+        args: ['exec', 'rails', 'db:migrate']
         env:
         - name: RAILS_ENV
           value: "production"
@@ -31,8 +21,6 @@ spec:
             configMapKeyRef:
               name: idp-postgres
               key: hostname
-        ports:
-        - containerPort: 3000
         volumeMounts:
         - name: appconfig
           mountPath: "/appconfig"
