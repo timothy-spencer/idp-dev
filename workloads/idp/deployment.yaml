@@ -23,7 +23,7 @@ spec:
         image: gsatspencer/identity-idp:1.0.10
         env:
         - name: RAILS_SERVE_STATIC_FILES
-          value: "1"
+          value: "true"
         - name: RAILS_ENV
           value: "production"
         - name: NEW_RELIC_AGENT_ENABLED
