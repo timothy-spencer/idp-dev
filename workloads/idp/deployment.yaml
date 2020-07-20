@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: idp
-        image: gsatspencer/identity-idp:1.0.3
+        image: gsatspencer/identity-idp:1.0.4
         env:
         - name: RAILS_ENV
           value: "production"
