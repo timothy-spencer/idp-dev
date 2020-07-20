@@ -8,7 +8,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: idp-migrate
-        image: gsatspencer/identity-idp:1.0.1
+        image: gsatspencer/identity-idp:1.0.3
         command: ['bundle']
         args: ['exec', 'rails', 'db:migrate']
         env:
