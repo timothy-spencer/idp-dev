@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: idp-jobrunner
+  name: jobrunner
   labels:
-    app: idp-jobrunner
+    app: jobrunner
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: idp-jobrunner
+      app: jobrunner
   template:
     metadata:
       labels:
-        app: idp-jobrunner
+        app: jobrunner
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "3000"
         prometheus.io/path: "/api/health/"
     spec:
       containers:
-      - name: idp-jobrunner
+      - name: jobrunner
         image: gsatspencer/identity-idp
         command: ["/usr/local/bin/bundle"]
         args: ["exec", "rake", "job_runs:run[/tmp/job_runs.pid]"]
