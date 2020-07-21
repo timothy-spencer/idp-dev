@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: idp
-        image: gsatspencer/identity-idp:1.0.13
+        image: gsatspencer/identity-idp:1.0.14
         env:
         - name: RAILS_SERVE_STATIC_FILES
           value: "true"
