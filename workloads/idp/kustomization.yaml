@@ -1,6 +1,7 @@
 resources:
   - service.yaml
-  - deployment.yaml
+  - deployment-idp.yaml
+  - deployment-jobrunner.yaml
   - migrate.yaml
   - canary.yml
   - autoscaler.yml
