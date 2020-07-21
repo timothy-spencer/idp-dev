@@ -1,6 +1,8 @@
 resources:
   - service.yaml
-  - deployment.yaml
+  - deployment-idp.yaml
+  - deployment-jobrunner.yaml
+  - migrate.yaml
   - canary.yml
   - autoscaler.yml
   - github.com/weaveworks/flagger//kustomize/tester
@@ -8,3 +10,6 @@ resources:
 # - name: application.yml
 #   files:
 #     - ../../../identity-idp/config/application.yml.default
+images:
+- name: gsatspencer/identity-idp
+  newTag: 1.0.14

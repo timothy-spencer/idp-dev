@@ -1,17 +1,27 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: idp-migrate
+  name: idp-jobrunner
+  labels:
+    app: idp-jobrunner
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: idp-jobrunner
   template:
+    metadata:
+      labels:
+        app: idp-jobrunner
     spec:
-      restartPolicy: Never
       containers:
-      - name: idp-migrate
+      - name: idp
         image: gsatspencer/identity-idp
-        command: ['/usr/local/bin/bundle']
-        args: ['exec', 'rails', 'db:migrate']
+        command: ["/usr/local/bin/bundle"]
+        args: ["exec", "rake", "job_runs:run[/tmp/job_runs.pid]"]
         env:
+        - name: RAILS_SERVE_STATIC_FILES
+          value: "true"
         - name: RAILS_ENV
           value: "production"
         - name: NEW_RELIC_AGENT_ENABLED
