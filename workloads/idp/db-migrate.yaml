@@ -23,6 +23,8 @@ spec:
               key: hostname
         - name: MIGRATION_STATEMENT_TIMEOUT
           value: "600000"
+        - name: SAFETY_ASSURED
+          value: 1
         volumeMounts:
         - name: appconfig
           mountPath: "/appconfig"
