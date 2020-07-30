@@ -1,5 +1,4 @@
 resources:
-  - db-create.yaml
   - db-migrate.yaml
   - service.yaml
   - deployment-idp.yaml
