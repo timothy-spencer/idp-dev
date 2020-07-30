@@ -21,6 +21,8 @@ spec:
             configMapKeyRef:
               name: idp-postgres
               key: hostname
+        - name: MIGRATION_STATEMENT_TIMEOUT
+          value: "600000"
         volumeMounts:
         - name: appconfig
           mountPath: "/appconfig"
