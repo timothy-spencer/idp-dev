@@ -1,8 +1,9 @@
 resources:
+#  - db-create.yaml
+  - db-migrate.yaml
   - service.yaml
   - deployment-idp.yaml
   - deployment-jobrunner.yaml
-  - migrate.yaml
   - canary.yml
   - autoscaler.yml
   - github.com/weaveworks/flagger//kustomize/tester
