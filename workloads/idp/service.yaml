@@ -4,7 +4,7 @@ metadata:
   name: idp
 spec:
   selector:
-    app: idp
+    app: idp-primary
   ports:
     - name: https
       port: 443
