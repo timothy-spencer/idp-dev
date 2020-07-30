@@ -10,7 +10,7 @@ spec:
       - name: idp-dbmigrate
         image: gsatspencer/identity-idp
         command: ['/usr/local/bin/bundle']
-        args: ['exec', 'rake', 'db:environment:set', 'db:migrate']
+        args: ['exec', 'rake', 'db:migrate']
         env:
         - name: RAILS_ENV
           value: "production"
