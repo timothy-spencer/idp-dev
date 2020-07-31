@@ -1,3 +1,8 @@
+# XXX This is broken because our process for creating a new db
+# seems not to be maintained for new systems.
+# Apparently https://github.com/18F/identity-idp/blob/master/bin/setup#L54-L56
+# is the way to do it, and I did it by hand and it had errors but it
+# worked in the end.
 apiVersion: batch/v1
 kind: Job
 metadata:
