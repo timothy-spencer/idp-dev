@@ -6,8 +6,8 @@ spec:
   selector:
     app: idp-primary
   ports:
-    - name: https
-      port: 443
+    - name: http
+      port: 3000
       protocol: TCP
       targetPort: 3000
   type: LoadBalancer
