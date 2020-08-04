@@ -21,6 +21,13 @@ spec:
       containers:
       - name: idp
         image: gsatspencer/identity-idp
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "250m"
+          limits:
+            memory: "2048Mi"
+            cpu: "500m"
         env:
         - name: RAILS_SERVE_STATIC_FILES
           value: "true"
