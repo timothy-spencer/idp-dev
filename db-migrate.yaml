@@ -9,8 +9,8 @@ spec:
       containers:
       - name: idp-dbmigrate
         image: gsatspencer/identity-idp
-        command: ['/usr/local/bin/bundle']
-        args: ['exec', 'rake', 'db:migrate']
+        command: ['/bin/sh']
+        args: ['-c' '/usr/local/bin/bundle exec rake db:create ; /usr/local/bin/bundle exec rake db:environment:set ; /usr/local/bin/bundle exec rake db:reset /usr/local/bin/bundle exec rake db:environment:set ; /usr/local/bin/bundle exec rake dev:prime ; /usr/local/bin/bundle exec rake parallel:setup ; /usr/local/bin/bundle exec rake db:migrate']
         env:
         - name: RAILS_ENV
           value: "production"
