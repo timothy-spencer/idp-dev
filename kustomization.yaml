@@ -1,5 +1,5 @@
 resources:
-  - db-migrate.yaml
+#  - db-migrate.yaml
   - service.yaml
   - deployment-idp.yaml
   - deployment-jobrunner.yaml
