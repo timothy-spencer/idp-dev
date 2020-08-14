@@ -48,6 +48,12 @@ spec:
       thresholdRange:
         max: 500
       interval: 1m
+    - name: request-success-rate
+      # minimum req success rate (non 5xx responses)
+      # percentage (0-100)
+      thresholdRange:
+        min: 99
+      interval: 1m
     # testing 
     webhooks:
       - name: acceptance-test
