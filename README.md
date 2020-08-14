@@ -22,3 +22,5 @@ This currently doesn't work, but if you run `kubectl apply -f db-create.yaml`,
 it should create the upaya database.  After that, deployments should
 kick off the `db-migrate.yaml` job to do updates.
 
+For some reason, they are just hanging.  Not sure why.
+
