@@ -21,7 +21,7 @@ spec:
     name: idp
   service:
     gateways:
-    - idp-gateway.istio-system.svc.cluster.local
+    - idp-gateway
     # service port number
     port: 443
     # container port number or name (optional)
