@@ -20,8 +20,10 @@ spec:
     kind: HorizontalPodAutoscaler
     name: idp
   service:
+    gateways:
+    - idp-gateway.istio-system.svc.cluster.local
     # service port number
-    port: 3000
+    port: 443
     # container port number or name (optional)
     targetPort: 3000
     # Istio retry policy (optional)
