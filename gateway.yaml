@@ -5,7 +5,7 @@ metadata:
   namespace: idp
 spec:
   selector:
-    app: idp-primary
+    deployment: idp-primary
   servers:
   - port:
       number: 80
