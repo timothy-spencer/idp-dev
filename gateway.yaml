@@ -1,11 +1,11 @@
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: idp-gateway
   namespace: idp
 spec:
   selector:
-    app: idp-primary
+    istio: idp-primary
   servers:
   - port:
       number: 80
