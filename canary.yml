@@ -54,7 +54,7 @@ spec:
       thresholdRange:
         min: 99
       interval: 1m
-    # testing 
+    # testing to make sure that the code is running here:  shoudl have some functional tests here probably.
     webhooks:
       - name: acceptance-test
         type: pre-rollout

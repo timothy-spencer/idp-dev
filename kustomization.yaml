@@ -1,6 +1,6 @@
 resources:
 #  - db-migrate.yaml
-  - service.yaml
+  - gateway.yaml
   - deployment-idp.yaml
   - deployment-jobrunner.yaml
   - canary.yml
