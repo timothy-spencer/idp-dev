@@ -1,17 +1,24 @@
-# fluxcd-multi-tenancy-team1
+# Delegated repo example
 
-[![test](https://github.com/fluxcd/multi-tenancy-team1/workflows/test/badge.svg)](https://github.com/fluxcd/multi-tenancy-team1/blob/master/.github/workflows/test.yml)
+This repo is used by argo to deploy a demo of the idp application.
 
-Demo repository for managing a multi-tenant cluster with Flux and Kustomize,
-part of [fluxcd/multi-tenancy](https://github.com/fluxcd/multi-tenancy).
+What argo will do is run `kustomize build .` at this top level, and
+whatever yaml is there gets generated and deployed. 
 
-This repository uses [GitHub Actions](https://github.com/marketplace/actions/kubernetes-toolset)
-to validate the Kubernetes manifests with kubeval and a set of Open Policy Agent
-[rego rules](https://github.com/fluxcd/multi-tenancy-team1/blob/master/.github/policy/).
+Argocd will limit this deployment to the idp namespace, and also
+only allow yaml to be pulled from this repo and the identity-eks repo.
 
-GitHub [workflow](https://github.com/fluxcd/multi-tenancy-team1/blob/master/.github/workflows/test.yml):
-* validate kustomize build with kubeval strict mode
-* deny containers with latest image tag
-* deny deployments and services without app label selector
-* warn if deployments have no prometheus pod annotations
+This is meant to demonstrate how we would delegate the deployment of
+the app to the engineers.
+
+## idp config/secrets
+
+These are currently all set with the `createconfig.sh` script.  Run it
+for arguments.
+
+## idp db setup
+
+This currently doesn't work, but if you run `kubectl apply -f db-create.yaml`,
+it should create the upaya database.  After that, deployments should
+kick off the `db-migrate.yaml` job to do updates.
 

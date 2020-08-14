@@ -1,21 +1,16 @@
-# XXX This is broken because our process for creating a new db
-# seems not to be maintained for new systems.
-# Apparently https://github.com/18F/identity-idp/blob/master/bin/setup#L54-L56
-# is the way to do it, and I did it by hand and it had errors but it
-# worked in the end.
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: idp-dbcreate
+  name: idp-dbmigrate
 spec:
   template:
     spec:
       restartPolicy: Never
       containers:
-      - name: idp-dbcreate
+      - name: idp-dbmigrate
         image: gsatspencer/identity-idp
-        command: ['/bin/sh']
-        args: ['-c' '/usr/local/bin/bundle exec rake db:create ; /usr/local/bin/bundle exec rake db:environment:set ; /usr/local/bin/bundle exec rake db:reset /usr/local/bin/bundle exec rake db:environment:set ; /usr/local/bin/bundle exec rake dev:prime ; /usr/local/bin/bundle exec rake parallel:setup ; /usr/local/bin/bundle exec rake db:migrate']
+        command: ['/usr/local/bin/bundle']
+        args: ['exec', 'rake', 'db:migrate']
         env:
         - name: RAILS_ENV
           value: "production"

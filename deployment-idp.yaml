@@ -1,22 +1,36 @@
-# XXX This is broken because our process for creating a new db
-# seems not to be maintained for new systems.
-# Apparently https://github.com/18F/identity-idp/blob/master/bin/setup#L54-L56
-# is the way to do it, and I did it by hand and it had errors but it
-# worked in the end.
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: idp-dbcreate
+  name: idp
+  labels:
+    app: idp
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: idp
   template:
+    metadata:
+      labels:
+        app: idp
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+        prometheus.io/path: "/api/health/"
     spec:
-      restartPolicy: Never
       containers:
-      - name: idp-dbcreate
+      - name: idp
         image: gsatspencer/identity-idp
-        command: ['/bin/sh']
-        args: ['-c' '/usr/local/bin/bundle exec rake db:create ; /usr/local/bin/bundle exec rake db:environment:set ; /usr/local/bin/bundle exec rake db:reset /usr/local/bin/bundle exec rake db:environment:set ; /usr/local/bin/bundle exec rake dev:prime ; /usr/local/bin/bundle exec rake parallel:setup ; /usr/local/bin/bundle exec rake db:migrate']
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "1"
+          limits:
+            memory: "2048Mi"
+            cpu: "2"
         env:
+        - name: RAILS_SERVE_STATIC_FILES
+          value: "true"
         - name: RAILS_ENV
           value: "production"
         - name: NEW_RELIC_AGENT_ENABLED
@@ -26,10 +40,8 @@ spec:
             configMapKeyRef:
               name: idp-postgres
               key: hostname
-        - name: MIGRATION_STATEMENT_TIMEOUT
-          value: "600000"
-        - name: SAFETY_ASSURED
-          value: "1"
+        ports:
+        - containerPort: 3000
         volumeMounts:
         - name: appconfig
           mountPath: "/appconfig"

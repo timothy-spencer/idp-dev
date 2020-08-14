@@ -1,6 +1,15 @@
-namespace: idp
-bases:
-  - ./workloads/redis/
-  - ./workloads/idp/
-  - ./workloads/cats/
-  - ./workloads/idp-bluegreen/
+resources:
+  - db-migrate.yaml
+  - service.yaml
+  - deployment-idp.yaml
+  - deployment-jobrunner.yaml
+  - canary.yml
+  - autoscaler.yml
+  - github.com/weaveworks/flagger//kustomize/tester
+# secretGenerator:
+# - name: application.yml
+#   files:
+#     - ../../../identity-idp/config/application.yml.default
+images:
+- name: gsatspencer/identity-idp
+  newTag: 1.0.17
