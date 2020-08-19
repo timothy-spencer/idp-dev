@@ -23,7 +23,7 @@ spec:
     gateways:
     - idp-gateway
     # service port number
-    port: 3000
+    port: 3001
     # container port number or name (optional)
     targetPort: 3000
     # Istio retry policy (optional)
