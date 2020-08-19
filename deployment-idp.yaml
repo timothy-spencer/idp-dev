@@ -38,8 +38,18 @@ spec:
         - name: database_host
           valueFrom:
             configMapKeyRef:
-              name: idp-postgres
-              key: hostname
+              name: idp-config
+              key: db_hostname
+        - name: domain_name
+          valueFrom:
+            configMapKeyRef:
+              name: idp-config
+              key: domain_name
+        - name: mailer_domain_name
+          valueFrom:
+            configMapKeyRef:
+              name: idp-config
+              key: mailer_domain_name
         ports:
         - containerPort: 3000
         volumeMounts:
