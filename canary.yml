@@ -23,7 +23,7 @@ spec:
     gateways:
     - idp-gateway
     # service port number
-    port: 3001
+    port: 3000
     # Istio retry policy (optional)
     retries:
       attempts: 3
@@ -62,10 +62,10 @@ spec:
         timeout: 15s
         metadata:
           type: bash
-          cmd: "curl -s http://idp-canary.idp:3001/api/health/database | grep healthy.*true"
+          cmd: "curl -s http://idp-canary.idp:3000/api/health/database | grep healthy.*true"
       - name: load-test
         url: http://flagger-loadtester.test/
         timeout: 5s
         metadata:
-          cmd: "hey -z 1m -q 10 -c 2 http://idp-canary.idp:3001/api/health/"
+          cmd: "hey -z 1m -q 10 -c 2 http://idp-canary.idp:3000/api/health/"
 
