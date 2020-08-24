@@ -50,6 +50,11 @@ spec:
             configMapKeyRef:
               name: idp-config
               key: mailer_domain_name
+        - name: asset_host
+          valueFrom:
+            configMapKeyRef:
+              name: idp-config
+              key: mailer_domain_name
         ports:
         - containerPort: 3000
         volumeMounts:
