@@ -11,4 +11,4 @@ resources:
 #     - ../../../identity-idp/config/application.yml.default
 images:
 - name: gsatspencer/identity-idp
-  newTag: 1.1.8
+  newTag: 1.1.9
