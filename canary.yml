@@ -52,7 +52,7 @@ spec:
       # minimum req success rate (non 5xx responses)
       # percentage (0-100)
       thresholdRange:
-        min: 99
+        min: 95
       interval: 1m
     # testing to make sure that the code is running here:  shoudl have some functional tests here probably.
     webhooks:
